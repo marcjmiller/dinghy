@@ -8,14 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "dockerode": "^3.3.0",
     "error": "^10.4.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@types/dockerode": "^3.2.3",
+    "@types/react": "^17.0.6",
     "autoprefixer": "^10.0.4",
     "postcss": "^8.1.10",
-    "tailwindcss": "^2.1.1"
+    "tailwindcss": "^2.1.1",
+    "typescript": "^4.2.4"
   }
 }
