@@ -1,0 +1,23 @@
+a {
+  @apply text-blue-500 hover:text-blue-300;
+}
+
+body {
+  @apply px-4;
+}
+
+header a {
+  @apply uppercase;
+}
+
+table {
+  @apply w-full border border-collapse border-gray-500;
+}
+
+thead {
+  @apply border border-gray-500;
+}
+
+td {
+  @apply p-1 text-center;
+}
