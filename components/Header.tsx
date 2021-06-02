@@ -21,7 +21,7 @@ const Header = () => {
           {links.map((link, idx) => (
             <Fragment key={idx}>
               <Spacer />
-              <Link href={link}>
+              <Link href={`/${link}`}>
                 <a>{link}</a>
               </Link>
             </Fragment>

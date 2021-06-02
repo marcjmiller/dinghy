@@ -17,12 +17,14 @@ const containers = ({
       <Header />
       <table className="table-auto">
         <thead>
-          <th>Name</th>
-          <th>Project</th>
-          <th>State</th>
-          <th>Image</th>
-          <th>Ports</th>
-          <th>Created</th>
+          <tr>
+            <th>Name</th>
+            <th>Project</th>
+            <th>State</th>
+            <th>Image</th>
+            <th>Ports</th>
+            <th>Created</th>
+          </tr>
         </thead>
         <tbody>
           {data.containers.map((container, idx) => {

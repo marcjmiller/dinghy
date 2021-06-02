@@ -17,11 +17,13 @@ const images = ({
       <Header />
       <table className="table-auto">
         <thead>
-          <th>Name</th>
-          <th>Project</th>
-          <th>ID</th>
-          <th>Driver</th>
-          <th>Created</th>
+          <tr>
+            <th>Name</th>
+            <th>Project</th>
+            <th>ID</th>
+            <th>Driver</th>
+            <th>Created</th>
+          </tr>
         </thead>
         <tbody>
           {data.networks.map((network, idx) => {
