@@ -1,10 +1,12 @@
 import React, { Fragment } from "react";
+import { useRouter } from 'next/router'
 import Spacer from "./Spacer";
 import Link from "next/link";
 import Head from "next/head";
 
 const Header = () => {
   const links = ["containers", "images", "networks", "volumes"];
+  const currentView = useRouter();
 
   return (
     <>
@@ -16,13 +18,13 @@ const Header = () => {
         <span className="text-xl">Dinghy</span>
         <p className="text-sm">
           <Link href="/">
-            <a>home</a>
+            <a className={currentView.pathname.substring(1) === "" && "active"}>home</a>
           </Link>
           {links.map((link, idx) => (
             <Fragment key={idx}>
               <Spacer />
               <Link href={`/${link}`}>
-                <a>{link}</a>
+                <a className={currentView.pathname.substring(1) === link && "active"}>{link}</a>
               </Link>
             </Fragment>
           ))}

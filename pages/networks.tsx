@@ -20,7 +20,7 @@ const images = ({
           <tr>
             <th>Name</th>
             <th>Project</th>
-            <th>ID</th>
+            <th>ID (sha256)</th>
             <th>Driver</th>
             <th>Created</th>
           </tr>

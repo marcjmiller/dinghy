@@ -2,6 +2,7 @@ import { format, fromUnixTime } from "date-fns";
 import Dockerode from "dockerode";
 import { InferGetServerSidePropsType } from "next";
 import React from "react";
+import ContainerControl from "../components/ContainerControl";
 import Header from "../components/Header";
 import { dateFormat } from "./_app";
 
@@ -12,6 +13,8 @@ type Containers = {
 const containers = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const controls = ["Pause", "Restart", "Start", "Stop", "Unpause"];
+
   return (
     <div className="w-full">
       <Header />
@@ -30,7 +33,12 @@ const containers = ({
           {data.containers.map((container, idx) => {
             return (
               <tr key={idx}>
-                <td className="!text-left">{container.Names[0].substr(1)}</td>
+                <td className="!text-left flex justify-between name">
+                  {container.Names[0].substr(1)}
+                  <div>
+                    <ContainerControl containerId={container.Id} />
+                  </div>
+                </td>
                 <td>{container.Labels["com.docker.compose.project"] || ""}</td>
                 <td>{container.State}</td>
                 <td>{container.Image}</td>
@@ -44,7 +52,7 @@ const containers = ({
                             target="_blank"
                             rel="noreferrer"
                           >
-                            {port.PrivatePort} -&gt; {port.PublicPort}
+                            {port.PublicPort}
                           </a>
                         </p>
                       );
