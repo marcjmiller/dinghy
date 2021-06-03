@@ -30,7 +30,6 @@ const images = ({
           <tr>
             <th>Tag</th>
             <th>ID (sha256)</th>
-            {/* <th>ParentId (sha256)</th> */}
             <th className="cursor-pointer " onClick={toggleSize}>
               Size ({dataSize === 1024 ? "KB" : "MB"})
             </th>
@@ -43,7 +42,6 @@ const images = ({
               <tr key={idx}>
                 <td className="!text-left">{image.RepoTags}</td>
                 <td>{image.Id.substring(7, 15)}</td>
-                {/* <td>{image.ParentId.substring(7, 15)}</td> */}
                 <td>
                   {Math.floor(image.Size / dataSize)}{" "}
                   {dataSize === 1024 ? "KB" : "MB"}
