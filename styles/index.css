@@ -35,7 +35,7 @@ td {
 }
 
 tr .name div {
-  @apply flex items-center mr-1 text-xs text-center opacity-0 cursor-pointer select-none;
+  @apply flex items-center mr-1 text-xs text-center cursor-pointer select-none;
 }
 
 tr .name:hover div {

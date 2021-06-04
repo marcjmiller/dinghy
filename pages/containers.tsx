@@ -21,55 +21,60 @@ const containers = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Layout>
-    <main>
-      <table className="table-auto">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Project</th>
-            <th>State</th>
-            <th>Image</th>
-            <th>Ports</th>
-            <th>Created</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.containers.map((container, idx) => {
-            return (
-              <tr key={idx}>
-                <td className="!text-left flex justify-between name">
-                  {container.Names[0].substr(1)}
-                  <div>
-                    <ContainerControl containerId={container.Id} />
-                    <ThreeDots />
-                  </div>
-                </td>
-                <td>{container.Labels["com.docker.compose.project"] ?? ""}</td>
-                <td>{container.State}</td>
-                <td>{container.Image}</td>
-                <td>
-                  {container.Ports.map((port, idx) => {
-                    if (idx % 2 === 0)
-                      return (
-                        <p key={idx}>
-                          <a
-                            href={`http://localhost:${port.PublicPort}`}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {port.PublicPort}
-                          </a>
-                        </p>
-                      );
-                  })}
-                </td>
-                <td>{format(fromUnixTime(container.Created), DATE_FORMAT)}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </main>
+      <main>
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Project</th>
+              <th>State</th>
+              <th>Image</th>
+              <th>Ports</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.containers.map((container, idx) => {
+              return (
+                <tr key={idx}>
+                  <td className="!text-left flex justify-between name">
+                    {container.Names[0].substr(1)}
+
+                    <div>
+                      <ContainerControl containerId={container.Id} />
+                      <ThreeDots />
+                    </div>
+                  </td>
+                  <td>
+                    {container.Labels["com.docker.compose.project"] ?? ""}
+                  </td>
+                  <td>{container.State}</td>
+                  <td>{container.Image}</td>
+                  <td>
+                    {container.Ports.map((port, idx) => {
+                      if (idx % 2 === 0)
+                        return (
+                          <p key={idx}>
+                            <a
+                              href={`http://localhost:${port.PublicPort}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {port.PublicPort}
+                            </a>
+                          </p>
+                        );
+                    })}
+                  </td>
+                  <td>
+                    {format(fromUnixTime(container.Created), DATE_FORMAT)}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </main>
     </Layout>
   );
 };

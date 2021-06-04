@@ -54,7 +54,7 @@ const ContainerControl = ({ containerId }: OwnProps) => {
       {isLoading && <Refresh />}
       {controls.map(({ command, icon }, idx) => (
         <div
-          className="hover:text-blue-300"
+          className="opacity-0 hover:text-blue-300"
           key={idx}
           onClick={() => containerControl(containerId, command)}
         >
@@ -62,9 +62,9 @@ const ContainerControl = ({ containerId }: OwnProps) => {
         </div>
       ))}
       <Link href={`/api/container/${containerId}`}>
-        <a className="text-black hover:text-blue-300">
+        <div className="opacity-0  hover:text-blue-300">
           <Info />
-        </a>
+        </div>
       </Link>
     </>
   );
