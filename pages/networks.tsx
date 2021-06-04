@@ -3,43 +3,49 @@ import Dockerode from "dockerode";
 import { InferGetServerSidePropsType } from "next";
 import React from "react";
 import Header from "../components/Header";
-import { dateFormat } from "./_app";
+import Layout from "../components/Layout";
+import { DATE_FORMAT } from "./_app";
 
 type Networks = {
+  /** Networks returned from the API */
   networks: Dockerode.NetworkInspectInfo[];
 };
 
-const images = ({
+/**
+ * Networks
+ */
+const networks = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <div className="w-full">
-      <Header />
-      <table className="table-auto">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Project</th>
-            <th>ID (sha256)</th>
-            <th>Driver</th>
-            <th>Created</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.networks.map((network, idx) => {
-            return (
-              <tr key={idx}>
-                <td className="!text-left">{network.Name}</td>
-                <td>{network.Labels["com.docker.compose.project"] || ""}</td>
-                <td>{network.Id.substring(0, 15)}</td>
-                <td>{network.Driver}</td>
-                <td>{format(new Date(network.Created), dateFormat)}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <Layout>
+      <main>
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Project</th>
+              <th>ID (sha256)</th>
+              <th>Driver</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.networks.map((network, idx) => {
+              return (
+                <tr key={idx}>
+                  <td className="!text-left">{network.Name}</td>
+                  <td>{network.Labels["com.docker.compose.project"] || ""}</td>
+                  <td>{network.Id.substring(0, 15)}</td>
+                  <td>{network.Driver}</td>
+                  <td>{format(new Date(network.Created), DATE_FORMAT)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </main>
+    </Layout>
   );
 };
 
@@ -54,4 +60,4 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default images;
+export default networks;

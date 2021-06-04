@@ -3,12 +3,17 @@ import Dockerode from "dockerode";
 import { InferGetServerSidePropsType } from "next";
 import React, { useState } from "react";
 import Header from "../components/Header";
-import { dateFormat } from "./_app";
+import Layout from "../components/Layout";
+import { DATE_FORMAT } from "./_app";
 
 type Images = {
+  /** Images returned from the API */
   images: Dockerode.ImageInfo[];
 };
 
+/** 
+ * Images
+ */
 const images = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -23,8 +28,8 @@ const images = ({
   };
 
   return (
-    <div className="w-full">
-      <Header />
+    <Layout>
+    <main>
       <table className="table-auto">
         <thead>
           <tr>
@@ -41,18 +46,19 @@ const images = ({
             return (
               <tr key={idx}>
                 <td className="!text-left">{image.RepoTags}</td>
-                <td>{image.Id.substring(7, 15)}</td>
+                <td>{image.Id.substring(7, 19)}</td>
                 <td>
                   {Math.floor(image.Size / dataSize)}{" "}
                   {dataSize === 1024 ? "KB" : "MB"}
                 </td>
-                <td>{format(fromUnixTime(image.Created), dateFormat)}</td>
+                <td>{format(fromUnixTime(image.Created), DATE_FORMAT)}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-    </div>
+    </main>
+    </Layout>
   );
 };
 

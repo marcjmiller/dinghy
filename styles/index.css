@@ -9,6 +9,11 @@ body {
   @apply px-4;
 }
 
+main {
+  height: calc(100% - 128px);
+  @apply w-full overflow-y-auto;
+}
+
 header a {
   @apply uppercase;
 }

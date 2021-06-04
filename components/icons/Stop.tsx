@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Heroicons - Stop Icon 
+ * - stop (outline)
+ */
 const Stop = () => {
   return (
     <svg

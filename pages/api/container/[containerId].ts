@@ -1,6 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { dockerServer } from "../../../utils";
 
+/**
+ * Container detailed info
+ * @route `/api/container/${containerId}`
+ * @returns detailed info on the container identified by ${containerId}
+ */
 const containerInfo = async (req: NextApiRequest, res: NextApiResponse) => {
   const { containerId } = req.query;
   const container = dockerServer.getContainer(containerId.toString());

@@ -1,11 +1,10 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Layout from "../components/Layout";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <Header />
-
+    <Layout>
       <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
         <h1 className="text-6xl font-bold">
           Welcome to <span className="text-blue-600">Dinghy!</span>
@@ -19,9 +18,7 @@ const Home = () => {
           .
         </p>
       </main>
-
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

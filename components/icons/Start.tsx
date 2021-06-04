@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Heroicons - Start Icon 
+ * - play (outline)
+ */
 const Start = () => {
   return (
     <svg

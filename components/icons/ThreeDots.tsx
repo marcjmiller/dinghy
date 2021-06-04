@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Heroicons - 3 Dots Icon 
+ * - dots-vertical (outline)
+ */
 const ThreeDots = () => {
   return (
     <svg

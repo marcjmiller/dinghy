@@ -4,20 +4,24 @@ import { InferGetServerSidePropsType } from "next";
 import React from "react";
 import ContainerControl from "../components/ContainerControl";
 import Header from "../components/Header";
-import { dateFormat } from "./_app";
+import ThreeDots from "../components/icons/ThreeDots";
+import Layout from "../components/Layout";
+import { DATE_FORMAT } from "./_app";
 
 type Containers = {
+  /** Containers returned from the API */
   containers: Dockerode.ContainerInfo[];
 };
 
+/**
+ * Containers
+ */
 const containers = ({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const controls = ["Pause", "Restart", "Start", "Stop", "Unpause"];
-
   return (
-    <div className="w-full">
-      <Header />
+    <Layout>
+    <main>
       <table className="table-auto">
         <thead>
           <tr>
@@ -37,9 +41,10 @@ const containers = ({
                   {container.Names[0].substr(1)}
                   <div>
                     <ContainerControl containerId={container.Id} />
+                    <ThreeDots />
                   </div>
                 </td>
-                <td>{container.Labels["com.docker.compose.project"] || ""}</td>
+                <td>{container.Labels["com.docker.compose.project"] ?? ""}</td>
                 <td>{container.State}</td>
                 <td>{container.Image}</td>
                 <td>
@@ -58,13 +63,14 @@ const containers = ({
                       );
                   })}
                 </td>
-                <td>{format(fromUnixTime(container.Created), dateFormat)}</td>
+                <td>{format(fromUnixTime(container.Created), DATE_FORMAT)}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-    </div>
+    </main>
+    </Layout>
   );
 };
 

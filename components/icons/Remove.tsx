@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Heroicons - Remove Icon 
+ * - x-circle (outline)
+ */
 const Remove = () => {
   return (
     <svg

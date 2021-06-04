@@ -6,6 +6,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />;
 };
 
-export const dateFormat = "MM/dd/yyyy HH:mm";
+/** Date Format used with date-fns to keep it consistent across the app */
+export const DATE_FORMAT = "MM/dd/yyyy HH:mm";
 
 export default MyApp;

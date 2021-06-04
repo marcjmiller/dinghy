@@ -1,6 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { dockerServer } from "../../../utils";
 
+/**
+ * Manage Containers 
+ * @route `/api/container/${containerId}/${command}`
+ * - Used to manage containers by sending a Container ID and Command to be executed.
+ * @returns HTTP Status code and a Message after all promises Resolve/Reject
+ */
 const manageContainers = async (req: NextApiRequest, res: NextApiResponse) => {
   const { slug } = req.query;
   const containerId = slug[0];
@@ -15,8 +21,8 @@ const manageContainers = async (req: NextApiRequest, res: NextApiResponse) => {
       const containerStatus = (await container.inspect()).State.Status;
       switch (command.toLowerCase()) {
         case "pause": {
-          containerStatus === 'running' && container.pause();
-          containerStatus === 'paused' && container.unpause();
+          containerStatus === 'running' && await container.pause();
+          containerStatus === 'paused' && await container.unpause();
           break;
         }
         case "remove": {
@@ -25,12 +31,12 @@ const manageContainers = async (req: NextApiRequest, res: NextApiResponse) => {
           break;
         }
         case "start": {
-          containerStatus === 'stopped' && container.start();
-          containerStatus === 'running' && container.restart();
+          containerStatus === 'exited' && await container.start();
+          containerStatus === 'running' && await container.restart();
           break;
         }
         case "stop": {
-          container.stop();
+          await container.stop();
           break;
         }
         default: {
@@ -45,9 +51,10 @@ const manageContainers = async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (err) {
     resStatus = err.statusCode;
     resMessage = `${err.message}`;
+    res.status(resStatus).send(resMessage);
+  } finally {
+    res.status(resStatus).send(resMessage);
   }
-
-  res.status(resStatus).send(resMessage);
 };
 
 export default manageContainers;

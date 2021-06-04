@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Heroicons - Info Icon 
+ * - information-circle (outline)
+ */
 const Info = () => {
   return (
     <svg

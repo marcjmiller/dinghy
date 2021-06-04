@@ -1,14 +1,14 @@
 import React from "react";
 
 /**
- * Heroicons - Pause Icon 
- * - pause (outline)
+ * Heroicons - Refresh Icon 
+ * - refresh (outline)
  */
-const Pause = () => {
+const Refresh = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6"
+      className="w-6 h-6 animate-spin"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -17,10 +17,10 @@ const Pause = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
       />
     </svg>
   );
 };
 
-export default Pause;
+export default Refresh;
