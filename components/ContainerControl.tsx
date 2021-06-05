@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import Pause from "./icons/Pause";
-import Start from "./icons/Start";
-import Stop from "./icons/Stop";
-import Remove from "./icons/Remove";
-import Info from "./icons/Info";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Refresh from "./icons/Refresh";
+import React, { useState } from 'react';
+import Pause from './icons/Pause';
+import Start from './icons/Start';
+import Stop from './icons/Stop';
+import Remove from './icons/Remove';
+import Info from './icons/Info';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Refresh from './icons/Refresh';
 
 interface Control {
   /** Command to send to the API */
   command: string;
-  
+
   /** React component (an Icon) to display in the container control component */
   icon: JSX.Element;
 }
@@ -30,10 +30,10 @@ const ContainerControl = ({ containerId }: OwnProps) => {
   const router = useRouter();
 
   const controls: Control[] = [
-    { command: "pause", icon: <Pause /> },
-    { command: "start", icon: <Start /> },
-    { command: "stop", icon: <Stop /> },
-    { command: "remove", icon: <Remove /> },
+    { command: 'pause', icon: <Pause /> },
+    { command: 'start', icon: <Start /> },
+    { command: 'stop', icon: <Stop /> },
+    { command: 'remove', icon: <Remove /> },
   ];
 
   /**
@@ -53,16 +53,12 @@ const ContainerControl = ({ containerId }: OwnProps) => {
     <>
       {isLoading && <Refresh />}
       {controls.map(({ command, icon }, idx) => (
-        <div
-          className="opacity-0 hover:text-blue-300"
-          key={idx}
-          onClick={() => containerControl(containerId, command)}
-        >
+        <div className='opacity-0 hover:text-blue-300' key={idx} onClick={() => containerControl(containerId, command)}>
           {icon}
         </div>
       ))}
       <Link href={`/api/container/${containerId}`}>
-        <div className="opacity-0  hover:text-blue-300">
+        <div className='opacity-0  hover:text-blue-300'>
           <Info />
         </div>
       </Link>

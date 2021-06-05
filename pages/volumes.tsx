@@ -1,10 +1,9 @@
-import { format } from "date-fns";
-import Dockerode from "dockerode";
-import { InferGetServerSidePropsType } from "next";
-import React from "react";
-import Header from "../components/Header";
-import Layout from "../components/Layout";
-import { DATE_FORMAT } from "./_app";
+import { format } from 'date-fns';
+import Dockerode from 'dockerode';
+import { InferGetServerSidePropsType } from 'next';
+import React from 'react';
+import Layout from '../components/Layout';
+import { DATE_FORMAT } from './_app';
 
 type Volumes = {
   /** Volumes returned from the API*/
@@ -17,13 +16,11 @@ type Volumes = {
 /**
  * Volumes
  */
-const volumes = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const volumes = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Layout>
       <main>
-        <table className="table-auto">
+        <table className='table-auto'>
           <thead>
             <tr>
               <th>Name</th>
@@ -35,9 +32,9 @@ const volumes = ({
             {data.Volumes.map((volume, idx) => {
               return (
                 <tr key={idx}>
-                  <td className="!text-left">{volume.Name}</td>
+                  <td className='!text-left'>{volume.Name}</td>
                   <td>{volume.Driver}</td>
-                  <td>{format(new Date(volume["CreatedAt"]), DATE_FORMAT)}</td>
+                  <td>{format(new Date(volume['CreatedAt']), DATE_FORMAT)}</td>
                 </tr>
               );
             })}
@@ -49,7 +46,7 @@ const volumes = ({
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/volumes");
+  const res = await fetch('http://localhost:3000/api/volumes');
   const data: Volumes = await res.json();
 
   return {

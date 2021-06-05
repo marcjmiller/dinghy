@@ -1,10 +1,9 @@
-import { format } from "date-fns";
-import Dockerode from "dockerode";
-import { InferGetServerSidePropsType } from "next";
-import React from "react";
-import Header from "../components/Header";
-import Layout from "../components/Layout";
-import { DATE_FORMAT } from "./_app";
+import { format } from 'date-fns';
+import Dockerode from 'dockerode';
+import { InferGetServerSidePropsType } from 'next';
+import React from 'react';
+import Layout from '../components/Layout';
+import { DATE_FORMAT } from './_app';
 
 type Networks = {
   /** Networks returned from the API */
@@ -14,13 +13,11 @@ type Networks = {
 /**
  * Networks
  */
-const networks = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const networks = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Layout>
       <main>
-        <table className="table-auto">
+        <table className='table-auto'>
           <thead>
             <tr>
               <th>Name</th>
@@ -34,8 +31,8 @@ const networks = ({
             {data.networks.map((network, idx) => {
               return (
                 <tr key={idx}>
-                  <td className="!text-left">{network.Name}</td>
-                  <td>{network.Labels["com.docker.compose.project"] || ""}</td>
+                  <td className='!text-left'>{network.Name}</td>
+                  <td>{network.Labels['com.docker.compose.project'] || ''}</td>
                   <td>{network.Id.substring(0, 15)}</td>
                   <td>{network.Driver}</td>
                   <td>{format(new Date(network.Created), DATE_FORMAT)}</td>
@@ -50,7 +47,7 @@ const networks = ({
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/networks");
+  const res = await fetch('http://localhost:3000/api/networks');
   const data: Networks = await res.json();
 
   return {

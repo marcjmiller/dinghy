@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { dockerServer } from "../../utils";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { dockerServer } from '../../utils';
 
 /**
  * Volumes list
@@ -7,7 +7,7 @@ import { dockerServer } from "../../utils";
  * @returns HTTP status code and a list of all Volumes on the given docker server
  */
 const volumes = async (req: NextApiRequest, res: NextApiResponse) => {
-  const response = await dockerServer.listVolumes()
+  const response = await dockerServer.listVolumes();
 
   res.status(200).send(response);
 };

@@ -1,12 +1,11 @@
-import { format, fromUnixTime } from "date-fns";
-import Dockerode from "dockerode";
-import { InferGetServerSidePropsType } from "next";
-import React from "react";
-import ContainerControl from "../components/ContainerControl";
-import Header from "../components/Header";
-import ThreeDots from "../components/icons/ThreeDots";
-import Layout from "../components/Layout";
-import { DATE_FORMAT } from "./_app";
+import { format, fromUnixTime } from 'date-fns';
+import Dockerode from 'dockerode';
+import { InferGetServerSidePropsType } from 'next';
+import React from 'react';
+import ContainerControl from '../components/ContainerControl';
+import ThreeDots from '../components/icons/ThreeDots';
+import Layout from '../components/Layout';
+import { DATE_FORMAT } from './_app';
 
 type Containers = {
   /** Containers returned from the API */
@@ -16,13 +15,11 @@ type Containers = {
 /**
  * Containers
  */
-const containers = ({
-  data,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const containers = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Layout>
       <main>
-        <table className="table-auto">
+        <table className='table-auto'>
           <thead>
             <tr>
               <th>Name</th>
@@ -37,7 +34,7 @@ const containers = ({
             {data.containers.map((container, idx) => {
               return (
                 <tr key={idx}>
-                  <td className="!text-left flex justify-between name">
+                  <td className='!text-left flex justify-between name'>
                     {container.Names[0].substr(1)}
 
                     <div>
@@ -45,9 +42,7 @@ const containers = ({
                       <ThreeDots />
                     </div>
                   </td>
-                  <td>
-                    {container.Labels["com.docker.compose.project"] ?? ""}
-                  </td>
+                  <td>{container.Labels['com.docker.compose.project'] ?? ''}</td>
                   <td>{container.State}</td>
                   <td>{container.Image}</td>
                   <td>
@@ -55,20 +50,14 @@ const containers = ({
                       if (idx % 2 === 0)
                         return (
                           <p key={idx}>
-                            <a
-                              href={`http://localhost:${port.PublicPort}`}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
+                            <a href={`http://localhost:${port.PublicPort}`} target='_blank' rel='noreferrer'>
                               {port.PublicPort}
                             </a>
                           </p>
                         );
                     })}
                   </td>
-                  <td>
-                    {format(fromUnixTime(container.Created), DATE_FORMAT)}
-                  </td>
+                  <td>{format(fromUnixTime(container.Created), DATE_FORMAT)}</td>
                 </tr>
               );
             })}
@@ -80,7 +69,7 @@ const containers = ({
 };
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/containers");
+  const res = await fetch('http://localhost:3000/api/containers');
   const data: Containers = await res.json();
 
   return {

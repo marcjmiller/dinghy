@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { dockerServer } from "../../utils";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { dockerServer } from '../../utils';
 
 /**
  * Networks list
@@ -7,9 +7,9 @@ import { dockerServer } from "../../utils";
  * @returns HTTP status code and a list of all Networks on the given docker server
  */
 const networks = async (req: NextApiRequest, res: NextApiResponse) => {
-  const response = await dockerServer.listNetworks()
+  const response = await dockerServer.listNetworks();
 
-  res.status(200).send({networks: response});
+  res.status(200).send({ networks: response });
 };
 
 export default networks;

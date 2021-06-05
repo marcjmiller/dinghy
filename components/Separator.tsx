@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 /**
- * Separator 
+ * Separator
  * - Separator between navigation links in the Header component
  */
 const Separator = () => {
-  return <>{" | "}</>;
+  return <>{' | '}</>;
 };
 
 export default Separator;

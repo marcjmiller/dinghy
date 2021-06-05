@@ -33,7 +33,8 @@ td {
   @apply p-1 text-center;
 }
 
-td ~ td, th ~ th {
+td ~ td,
+th ~ th {
   @apply border-l border-gray-400;
 }
 

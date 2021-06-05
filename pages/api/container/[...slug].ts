@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { dockerServer } from "../../../utils";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { dockerServer } from '../../../utils';
 
 /**
- * Manage Containers 
+ * Manage Containers
  * @route `/api/container/${containerId}/${command}`
  * - Used to manage containers by sending a Container ID and Command to be executed.
  * @returns HTTP Status code and a Message after all promises Resolve/Reject
@@ -17,25 +17,26 @@ const manageContainers = async (req: NextApiRequest, res: NextApiResponse) => {
   let resMessage = `Attempting to ${command} container Id: ${containerId}.`;
 
   try {
-    if (await container.inspect()) {  // This throws an error if the container does not exist.
+    // This throws an error if the container does not exist.
+    if (await container.inspect()) {
       const containerStatus = (await container.inspect()).State.Status;
       switch (command.toLowerCase()) {
-        case "pause": {
-          containerStatus === 'running' && await container.pause();
-          containerStatus === 'paused' && await container.unpause();
+        case 'pause': {
+          containerStatus === 'running' && (await container.pause());
+          containerStatus === 'paused' && (await container.unpause());
           break;
         }
-        case "remove": {
+        case 'remove': {
           await container.stop();
           await container.remove();
           break;
         }
-        case "start": {
-          containerStatus === 'exited' && await container.start();
-          containerStatus === 'running' && await container.restart();
+        case 'start': {
+          containerStatus === 'exited' && (await container.start());
+          containerStatus === 'running' && (await container.restart());
           break;
         }
-        case "stop": {
+        case 'stop': {
           await container.stop();
           break;
         }
@@ -46,7 +47,7 @@ const manageContainers = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     } else {
       resStatus = 400;
-      resMessage = `Container '${containerId}' is not running.`
+      resMessage = `Container '${containerId}' is not running.`;
     }
   } catch (err) {
     resStatus = err.statusCode;

@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --config ./config/.prettierrc.yaml --check './{pages,components,styles}/**/*.{ts,tsx,css}'"
+    "format": "prettier --config ./config/.prettierrc.yaml --write './{pages,components,styles}/**/*.{ts,tsx,css}'"
   },
   "dependencies": {
     "date-fns": "^2.22.1",
