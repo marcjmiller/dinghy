@@ -10,8 +10,7 @@ body {
 }
 
 main {
-  height: calc(100% - 128px);
-  @apply w-full overflow-y-auto;
+  @apply w-full overflow-hidden;
 }
 
 header a {
@@ -19,7 +18,7 @@ header a {
 }
 
 table {
-  @apply w-full border border-collapse border-gray-500;
+  @apply w-full border border-collapse border-gray-400;
 }
 
 tr:nth-child(even) {
@@ -27,11 +26,15 @@ tr:nth-child(even) {
 }
 
 thead {
-  @apply border border-gray-500;
+  @apply uppercase border border-gray-400;
 }
 
 td {
   @apply p-1 text-center;
+}
+
+td ~ td, th ~ th {
+  @apply border-l border-gray-400;
 }
 
 tr .name div {

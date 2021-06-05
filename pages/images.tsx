@@ -35,7 +35,7 @@ const images = ({
           <tr>
             <th>Tag</th>
             <th>ID (sha256)</th>
-            <th className="cursor-pointer " onClick={toggleSize}>
+            <th className="cursor-pointer" onClick={toggleSize}>
               Size ({dataSize === 1024 ? "KB" : "MB"})
             </th>
             <th>Added</th>

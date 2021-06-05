@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import Scrollbars from "react-custom-scrollbars-2";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -15,7 +16,11 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Scrollbars
+        autoHide
+      >
       {children}
+      </Scrollbars>
       <Footer />
     </div>
   );

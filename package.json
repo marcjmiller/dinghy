@@ -13,6 +13,7 @@
     "error": "^10.4.0",
     "next": "latest",
     "react": "^17.0.1",
+    "react-custom-scrollbars-2": "^4.4.0",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
