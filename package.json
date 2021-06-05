@@ -1,17 +1,19 @@
 {
-  "name": "Dinghy",
+  "name": "dinghy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --config ./config/.prettierrc.yaml --check './{pages,components,styles}/**/*.{ts,tsx,css}'"
   },
   "dependencies": {
     "date-fns": "^2.22.1",
     "dockerode": "^3.3.0",
     "error": "^10.4.0",
     "next": "latest",
+    "prettier": "^2.3.1",
     "react": "^17.0.1",
     "react-custom-scrollbars-2": "^4.4.0",
     "react-dom": "^17.0.1"
