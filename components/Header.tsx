@@ -9,7 +9,7 @@ import Head from 'next/head';
  * - Displayed on all pages to provide navigation for Dinghy
  */
 const Header = () => {
-  const links = ['containers', 'images', 'networks', 'volumes'];
+  const links = ['servers', 'containers', 'images', 'networks', 'volumes'];
   const currentView = useRouter();
 
   return (

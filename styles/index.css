@@ -39,9 +39,29 @@ th ~ th {
 }
 
 tr .name div {
-  @apply flex items-center mr-1 text-xs text-center cursor-pointer select-none;
+  @apply flex items-center text-xs text-center cursor-pointer select-none;
 }
 
 tr .name:hover div {
   @apply opacity-100;
+}
+
+input {
+  @apply p-2 text-sm border border-black rounded;
+}
+
+label {
+  @apply text-xs;
+}
+
+.button {
+  @apply p-2 text-center text-white uppercase bg-blue-400 rounded cursor-pointer hover:bg-blue-500;
+}
+
+.modal-background {
+  @apply absolute top-0 left-0 w-screen h-screen bg-black opacity-25;
+}
+
+.modal {
+  @apply absolute w-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2;
 }

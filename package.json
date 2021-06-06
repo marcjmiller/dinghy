@@ -9,6 +9,7 @@
     "format": "prettier --write './{pages,components,styles}/**/*.{ts,tsx,css}'"
   },
   "dependencies": {
+    "clsx": "^1.1.1",
     "date-fns": "^2.22.1",
     "dockerode": "^3.3.0",
     "error": "^10.4.0",

@@ -1,14 +1,19 @@
 import React from 'react';
+import clsx from 'clsx';
+
+interface OwnProps {
+  isLoading: boolean;
+}
 
 /**
  * Heroicons - Refresh Icon
  * - refresh (outline)
  */
-const Refresh = () => {
+const Refresh = ({ isLoading }: OwnProps) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className='w-6 h-6 animate-spin'
+      className={clsx('w-6 h-6 animate-spin', isLoading ? 'opacity-100' : 'opacity-0')}
       fill='none'
       viewBox='0 0 24 24'
       stroke='currentColor'
