@@ -1,5 +1,10 @@
 {
   "servers": [
-    { "name": "localHost" }
+    { "name": "localHost" },
+    {
+      "dockerOptions": {
+        "socketPath": "/var/run/docker.sock"
+      }
+    }
   ]
 }

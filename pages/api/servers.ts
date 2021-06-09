@@ -35,6 +35,7 @@ export const getServersJson = () => {
   serversJson.servers.forEach((server) => {
     serversObj[server.name] = new Docker(server.dockerOptions);
   });
+  
   return serversObj;
 };
 
