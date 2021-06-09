@@ -19,13 +19,16 @@ interface Control {
 interface OwnProps {
   /** Container ID of the container to be manipulated */
   containerId: string;
+
+  /** Name of the server the container resides on */
+  server: string;
 }
 
 /**
  * ContainerControl
  * - Displayed in container rows to provide a means to start/stop/pause/unpause/remove containers.
  */
-const ContainerControl = ({ containerId }: OwnProps) => {
+const ContainerControl = ({ containerId, server }: OwnProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -39,11 +42,11 @@ const ContainerControl = ({ containerId }: OwnProps) => {
   /**
    * Function to send container commands to the API
    * @param containerId string - ID of the container to manage
-   * @param control string - Command to send to API
+   * @param command string - Command to send to API
    */
-  const containerControl = async (containerId: string, control: string) => {
+  const containerControl = async (command: string) => {
     setIsLoading(true);
-    await fetch(`/api/container/${containerId}/${control}`).finally(() => {
+    await fetch(`/api/container/${server}/${containerId}/${command}`).finally(() => {
       setIsLoading(false);
       router.replace(router.asPath);
     });
@@ -51,14 +54,14 @@ const ContainerControl = ({ containerId }: OwnProps) => {
 
   return (
     <>
-      {isLoading && <Refresh />}
+      <Refresh isLoading={isLoading} />
       {controls.map(({ command, icon }, idx) => (
-        <div className='opacity-0 hover:text-blue-300' key={idx} onClick={() => containerControl(containerId, command)}>
+        <div className='opacity-0 hover:text-blue-300' key={idx} onClick={() => containerControl(command)}>
           {icon}
         </div>
       ))}
-      <Link href={`/api/container/${containerId}`}>
-        <div className='opacity-0  hover:text-blue-300'>
+      <Link href={`/api/${server}/${containerId}`}>
+        <div className='opacity-0 hover:text-blue-300'>
           <Info />
         </div>
       </Link>

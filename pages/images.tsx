@@ -1,14 +1,9 @@
 import { format, fromUnixTime } from 'date-fns';
-import Dockerode from 'dockerode';
 import { InferGetServerSidePropsType } from 'next';
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
+import { ImageResponse } from './api/images';
 import { DATE_FORMAT } from './_app';
-
-type Images = {
-  /** Images returned from the API */
-  images: Dockerode.ImageInfo[];
-};
 
 /**
  * Images
@@ -31,6 +26,7 @@ const images = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>
           <thead>
             <tr>
               <th>Tag</th>
+              <th>Server</th>
               <th>ID (sha256)</th>
               <th className='cursor-pointer' onClick={toggleSize}>
                 Size ({dataSize === 1024 ? 'KB' : 'MB'})
@@ -39,18 +35,21 @@ const images = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>
             </tr>
           </thead>
           <tbody>
-            {data.images.map((image, idx) => {
-              return (
-                <tr key={idx}>
-                  <td className='!text-left'>{image.RepoTags}</td>
-                  <td>{image.Id.substring(7, 19)}</td>
-                  <td>
-                    {Math.floor(image.Size / dataSize)} {dataSize === 1024 ? 'KB' : 'MB'}
-                  </td>
-                  <td>{format(fromUnixTime(image.Created), DATE_FORMAT)}</td>
-                </tr>
-              );
-            })}
+            {Object.keys(data).map((server) =>
+              data[server].map((image, idx) => {
+                return (
+                  <tr key={idx}>
+                    <td className='!text-left'>{image.RepoTags}</td>
+                    <td>{server}</td>
+                    <td>{image.Id.substring(7, 19)}</td>
+                    <td>
+                      {Math.floor(image.Size / dataSize)} {dataSize === 1024 ? 'KB' : 'MB'}
+                    </td>
+                    <td>{format(fromUnixTime(image.Created), DATE_FORMAT)}</td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </main>
@@ -60,7 +59,7 @@ const images = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>
 
 export const getServerSideProps = async () => {
   const res = await fetch('http://localhost:3000/api/images');
-  const data: Images = await res.json();
+  const data: ImageResponse = await res.json();
 
   return {
     props: {

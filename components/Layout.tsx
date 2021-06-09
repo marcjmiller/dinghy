@@ -16,7 +16,9 @@ const Layout = ({ children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <Scrollbars autoHide>{children}</Scrollbars>
+      <Scrollbars autoHide style={{ height: '100%' }}>
+        {children}
+      </Scrollbars>
       <Footer />
     </div>
   );
